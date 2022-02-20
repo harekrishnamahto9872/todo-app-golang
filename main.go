@@ -15,7 +15,7 @@ func main() {
 
 	router := gin.Default()
 
-	routes.SetTaskRoutes(router, client)
+	routes.SetRoutes(router, client)
 
 	router.Run()
 

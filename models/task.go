@@ -6,15 +6,19 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-//for responses from mongodb queries
+// Task for responses from mongodb queries
 type Task struct {
-	ID          primitive.ObjectID `bson:"_id" json:"_id"`
-	Title       string             `json:"title"`
-	Description string             `json:"description"`
-	DueDate     bool               `json:"dueDate"`
-	CreatedAt   int64              `json:"createdAt"`
-	UpdatedAt   int64              `json:"updatedAt"`
-	User        string             `json:"user"`
+	ID                   primitive.ObjectID `bson:"_id" json:"_id"`
+	Title                string             `json:"title"`
+	Description          string             `json:"description"`
+	DueDate              string             `json:"dueDate"`
+	CreatedAt            int64              `json:"createdAt"`
+	UpdatedAt            int64              `json:"updatedAt"`
+	User                 string             `json:"user"`
+	IsSubtask            bool               `json:"isSubtask"`
+	ParentTaskID         string             `json:"parentTaskID"`
+	HasReminder          bool               `json:"hasReminder"`
+	NoOfHoursForReminder int64              `json:"noOfHoursForReminder"`
 }
 
 func (task *Task) SetCreatedAt() {
@@ -25,14 +29,18 @@ func (task *Task) SetUpdatedAt() {
 	task.UpdatedAt = time.Now().Unix()
 }
 
-// For mongodb insert
+// NewTask For mongodb insert
 type NewTask struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	DueDate     bool   `json:"dueDate"`
-	CreatedAt   int64  `json:"createdAt"`
-	UpdatedAt   int64  `json:"updatedAt"`
-	User        string `json:"user"`
+	Title                string `json:"title"`
+	Description          string `json:"description"`
+	DueDate              string `json:"dueDate"`
+	CreatedAt            int64  `json:"createdAt"`
+	UpdatedAt            int64  `json:"updatedAt"`
+	User                 string `json:"user"`
+	IsSubtask            bool   `json:"isSubtask"`
+	ParentTaskID         string `json:"parentTaskID"`
+	HasReminder          bool   `json:"hasReminder"`
+	NoOfHoursForReminder int64  `json:"noOfHoursForReminder"`
 }
 
 // SetCreatedAt //

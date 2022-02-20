@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/harekrishnamahto9872/todo-app-golang/util"
@@ -23,7 +24,9 @@ func Register(c *gin.Context, client *mongo.Client) {
 	user := models.UserCred{}
 
 	bindErr := c.ShouldBindJSON(&user)
+	fmt.Println("Value of c", c)
 	if bindErr != nil {
+		fmt.Println("some binding error")
 		log.Fatal(bindErr)
 	}
 
@@ -63,9 +66,10 @@ func Register(c *gin.Context, client *mongo.Client) {
 		})
 		return
 	}
-
+	fmt.Println("context:", c.Request.Context())
 	insertOneResult, insertErr := usersCollection.InsertOne(c.Request.Context(), user)
 	if insertErr != nil {
+		fmt.Println("inserterr binding error", insertErr)
 		c.JSON(400, util.ResError{
 			Success: false,
 			Error:   insertErr,
@@ -81,7 +85,7 @@ func Register(c *gin.Context, client *mongo.Client) {
 		}
 
 		// secure cookie unless in development env
-		secure := true
+		secure := false
 
 		c.SetCookie("token", token, 2000, "/", "", secure, true)
 

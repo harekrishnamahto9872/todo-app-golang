@@ -18,6 +18,7 @@ func Authentication() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// checks if the request has the token cookie
 		tokenStr, cookieErr := c.Cookie("token")
+		fmt.Println("token ", tokenStr, cookieErr)
 		// if no cookie, abort and respond with not logged in
 		if cookieErr != nil {
 			c.Abort()

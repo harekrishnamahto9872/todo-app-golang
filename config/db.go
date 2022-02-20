@@ -19,18 +19,13 @@ func ConnectDB() *mongo.Client {
 	if err != nil {
 		panic(err)
 	}
-	defer func() {
-		if err = client.Disconnect(context.TODO()); err != nil {
-			panic(err)
-		}
-	}()
 
 	// Ping the primary
 	if err := client.Ping(context.TODO(), readpref.Primary()); err != nil {
 		panic(err)
 	}
 
-	fmt.Println("Successfully connected and pinged.")
+	fmt.Println("Successfully connected DB and pinged.")
 
 	return client
 }

@@ -11,7 +11,7 @@ import (
 // @access Private
 func Logout(c *gin.Context) {
 
-	secure := true
+	secure := false
 
 	c.SetCookie("token", "", 2000, "/", "", secure, true)
 

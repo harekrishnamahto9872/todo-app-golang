@@ -8,9 +8,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// SetupRouter //
+// SetRoutes //
 // creates gin router and defines routes
-func SetTaskRoutes(router *gin.Engine, client *mongo.Client) {
+func SetRoutes(router *gin.Engine, client *mongo.Client) {
 	tasks := router.Group("/api/v1/tasks")
 
 	tasks.GET("", middleware.Authentication(), func(c *gin.Context) {

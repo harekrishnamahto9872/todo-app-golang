@@ -19,7 +19,7 @@ import (
 func UpdateTask(c *gin.Context, client *mongo.Client) {
 
 	updateFields := bson.M{
-		"updatedat": time.Now().Unix(),
+		"updatedAt": time.Now().Unix(),
 	}
 
 	bindErr := c.ShouldBindJSON(&updateFields)

@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-//for responses from mongodb queries
+// User for responses from mongodb queries
 type User struct {
 	ID       primitive.ObjectID `bson:"_id" json:"_id"`
 	Name     string             `json:"name"`
@@ -21,7 +21,7 @@ type User struct {
 	Password string             `json:"password"`
 }
 
-//for binding user details in request body
+// UserCred for binding user details in request body
 type UserCred struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
@@ -29,13 +29,13 @@ type UserCred struct {
 	Password string `json:"password"`
 }
 
-// UserRes struct is for formating responses containg user information
+// UserRes struct is for formatting responses containing user information
 type UserRes struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
 
-// Encrypt encrypts user passowrds for storage
+// Encrypt encrypts user passwords for storage
 func (user *UserCred) Encrypt(password string) {
 	hash, bcryptErr := bcrypt.GenerateFromPassword([]byte(password), 12)
 	if bcryptErr != nil {

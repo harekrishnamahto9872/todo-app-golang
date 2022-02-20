@@ -61,7 +61,7 @@ func Login(c *gin.Context, client *mongo.Client) {
 	}
 
 	// secure cookie unless in development env
-	secure := true
+	secure := false
 
 	c.SetCookie("token", token, 2000, "/", "", secure, true)
 
