@@ -10,7 +10,7 @@ import (
 )
 
 // Connection URI
-const uri = "mongodb+srv://hare123:pass123@myfirstcluster.ixxfb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const uri = "mongodb+srv://hare123:pass123@myfirstcluster.ixxfb.mongodb.net/Todo?retryWrites=true&w=majority"
 
 func ConnectDB() *mongo.Client {
 	// Create a new client and connect to the server
