@@ -1,28 +1,23 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"context"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/harekrishnamahto9872/todo-app-golang/config"
 )
-
-func hello(w http.ResponseWriter, req *http.Request) {
-
-	fmt.Fprintf(w, "hello\n")
-}
-
-func headers(w http.ResponseWriter, req *http.Request) {
-
-	for name, headers := range req.Header {
-		for _, h := range headers {
-			fmt.Fprintf(w, "%v: %v\n", name, h)
-		}
-	}
-}
 
 func main() {
 
-	http.HandleFunc("/hello", hello)
-	http.HandleFunc("/headers", headers)
+	client := config.ConnectDB()
 
-	http.ListenAndServe(":8090", nil)
+	router := gin.Default()
+
+	router.Run()
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	defer client.Disconnect(ctx)
+
 }
